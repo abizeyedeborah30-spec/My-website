@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Appointment</title>
+  <style>
+    body {
+      font-family: Aerial, sans-serif;
+      background-color: rgb(14, 245, 29);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50vh;
+      background-image: url("dollar.jpg");
+    }
+
+    .container {
+      background: rgb(107, 213, 255);
+      padding: 100px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgb(182, 18, 160);
+      width: 10px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 8px;
+      margin: 5px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1de00b;
+    }
+
+    .result {
+      margin-top: 10px;
+      font-weight: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="reports" class="page">
+    <h3>Reports</h3>
+
+    <button class="btn btn-primary mb-3" onclick="generateReport()">Generate Report</button>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+
+          <th>Report Name</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody id="reportList"></tbody>
+    </table>
+  </div>
+
+
+  <script>
+    let reports = [];
+    let reportId = 0;
+
+    function generateReport() {
+      reportId++;
+
+      let report = {
+        id: reportId,
+        name: "Clinic Report " + reportId,
+        date: new Date().toLocaleDateString()
+      };
+
+      reports.push(report);
+      displayReports();
+    }
+
+    function displayReports() {
+      let table = document.getElementById("reportList");
+      table.innerHTML = "";
+
+      reports.forEach(r => {
+        table.innerHTML += `
+      <tr>
+        <td>${r.id}</td>
+        <td>${r.name}</td>
+        <td>${r.date}</td>
+      </tr>
+    `;
+      });
+    }
+  </script>
+</body>
+
+</html>
